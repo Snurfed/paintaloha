@@ -27,18 +27,7 @@
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             position: relative;
             overflow: hidden;
-            padding: 40px 20px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23ffffff08"/></svg>');
-            background-size: 50px 50px;
+            padding: 60px 20px;
         }
 
         .hero-content {
@@ -56,23 +45,27 @@
                 grid-template-columns: 1fr;
                 text-align: center;
             }
+            .hero-visual {
+                order: -1;
+            }
         }
 
         .hero-logo {
-            max-width: 400px;
+            max-width: 350px;
             height: auto;
             margin-bottom: 20px;
         }
 
         @media (max-width: 900px) {
             .hero-logo {
-                max-width: 300px;
+                max-width: 280px;
+                margin: 0 auto 20px;
             }
         }
 
         .hero-text .tagline {
-            font-size: 1.4rem;
-            color: rgba(255,255,255,0.8);
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.85);
             margin-bottom: 30px;
         }
 
@@ -94,64 +87,30 @@
             box-shadow: 0 15px 40px rgba(255, 107, 0, 0.5);
         }
 
-        .hero-visual {
-            position: relative;
-        }
-
+        /* Real before/after showcase */
         .transform-showcase {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .showcase-image {
-            width: 200px;
-            height: 260px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 180px;
+            height: 220px;
             border-radius: 16px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .showcase-image.photo {
-            background: linear-gradient(135deg, #11998e, #38ef7d);
-        }
-
-        .showcase-image.canvas {
-            background: #f5f5f5;
-            color: #333;
-        }
-
-        .showcase-image.canvas::before {
-            content: '';
-            position: absolute;
-            inset: 10px;
-            border: 2px dashed #ccc;
-            border-radius: 8px;
-        }
-
-        .showcase-image .label {
-            position: absolute;
-            bottom: -30px;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.7);
+            object-fit: cover;
         }
 
         .arrow {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #FF6B00;
         }
 
         /* Section styles */
         .section {
-            padding: 100px 20px;
+            padding: 80px 20px;
             max-width: 1100px;
             margin: 0 auto;
         }
@@ -159,12 +118,69 @@
         .section-title {
             font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             color: #1a1a2e;
         }
 
         .section-title span {
             color: #FF6B00;
+        }
+
+        /* Gallery */
+        .gallery-section {
+            background: #f8f9fa;
+            padding: 80px 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-images {
+            display: flex;
+            position: relative;
+        }
+
+        .gallery-images img {
+            width: 50%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .gallery-label {
+            position: absolute;
+            bottom: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+
+        .gallery-label.left { left: 10px; }
+        .gallery-label.right { right: 10px; }
+
+        .gallery-caption {
+            padding: 15px 20px;
+            text-align: center;
+            font-weight: 500;
+            color: #333;
         }
 
         /* How it works */
@@ -215,10 +231,114 @@
             color: #666;
         }
 
+        /* Upload Section */
+        .upload-section {
+            background: linear-gradient(135deg, #00C4CC 0%, #00a8b0 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .upload-section .section-title {
+            color: white;
+        }
+
+        .upload-section .section-title span {
+            color: #FFE066;
+        }
+
+        .upload-box {
+            background: white;
+            border-radius: 24px;
+            padding: 50px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .upload-box p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .upload-form input[type="email"],
+        .upload-form input[type="text"] {
+            padding: 15px 20px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .upload-form input:focus {
+            outline: none;
+            border-color: #00C4CC;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            background: #f8f9fa;
+            border: 2px dashed #ccc;
+            border-radius: 12px;
+            padding: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-input-wrapper:hover {
+            border-color: #FF6B00;
+            background: #fff5f0;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-input-wrapper .upload-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .file-input-wrapper p {
+            margin: 0;
+            color: #666;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #FF6B00, #FF8C00);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4);
+        }
+
+        .upload-note {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
         /* Pricing */
         .pricing-section {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 100px 20px;
+            padding: 80px 20px;
         }
 
         .pricing-section .section-title {
@@ -318,44 +438,12 @@
             box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4);
         }
 
-        /* Made in Hawaii */
         .hawaii-badge {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             margin-top: 20px;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* Perfect for */
-        .perfect-for {
-            background: #f8f9fa;
-        }
-
-        .use-cases {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            text-align: center;
-        }
-
-        .use-case {
-            padding: 30px;
-        }
-
-        .use-case-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .use-case h4 {
-            color: #1a1a2e;
-            margin-bottom: 8px;
-        }
-
-        .use-case p {
             color: #666;
             font-size: 0.9rem;
         }
@@ -391,6 +479,26 @@
             color: rgba(255,255,255,0.4);
             font-size: 0.85rem;
         }
+
+        /* Submitted state */
+        .form-submitted {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .form-submitted.show {
+            display: block;
+        }
+
+        .form-submitted .success-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .upload-form.hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -399,19 +507,49 @@
         <div class="hero-content">
             <div class="hero-text">
                 <img src="logo.png" alt="Paint Aloha" class="hero-logo">
-                <p class="tagline">Custom paint-by-numbers kits made from your favorite memories</p>
+                <p class="tagline">Turn your favorite photos into custom paint-by-numbers kits, handmade in Hawaii</p>
                 <a href="#pricing" class="cta-button">Order Your Kit - $35</a>
             </div>
             <div class="hero-visual">
                 <div class="transform-showcase">
-                    <div class="showcase-image photo">
-                        📷 Your Photo
-                    </div>
+                    <img src="gallery/turtle_painted.png" alt="Original photo" class="showcase-image">
                     <div class="arrow">→</div>
-                    <div class="showcase-image canvas">
-                        🎨 Your Kit
-                    </div>
+                    <img src="gallery/turtle_canvas.png" alt="Paint by numbers canvas" class="showcase-image">
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-section">
+        <h2 class="section-title">See the <span>Transformation</span></h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-images">
+                    <img src="gallery/fish_painted.png" alt="Yellow Tang photo">
+                    <img src="gallery/fish_canvas.png" alt="Yellow Tang canvas">
+                    <span class="gallery-label left">Photo</span>
+                    <span class="gallery-label right">Canvas</span>
+                </div>
+                <div class="gallery-caption">Yellow Tang</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-images">
+                    <img src="gallery/surfer_painted.png" alt="Surfer photo">
+                    <img src="gallery/surfer_canvas.png" alt="Surfer canvas">
+                    <span class="gallery-label left">Photo</span>
+                    <span class="gallery-label right">Canvas</span>
+                </div>
+                <div class="gallery-caption">Surfer</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-images">
+                    <img src="gallery/aki_painted.jpg" alt="Pet portrait photo">
+                    <img src="gallery/aki_canvas.jpg" alt="Pet portrait canvas">
+                    <span class="gallery-label left">Photo</span>
+                    <span class="gallery-label right">Canvas</span>
+                </div>
+                <div class="gallery-caption">Pet Portrait</div>
             </div>
         </div>
     </section>
@@ -421,47 +559,50 @@
         <h2 class="section-title">How It <span>Works</span></h2>
         <div class="steps">
             <div class="step">
-                <div class="step-icon">📱</div>
-                <h3>1. Download the App</h3>
-                <p>Get our free iOS app and choose any photo from your camera roll</p>
+                <div class="step-icon">📸</div>
+                <h3>1. Upload Your Photo</h3>
+                <p>Use our app or upload directly on this website</p>
             </div>
             <div class="step">
-                <div class="step-icon">✨</div>
-                <h3>2. Generate Your Canvas</h3>
-                <p>Our app creates a numbered canvas with a custom color palette</p>
+                <div class="step-icon">🎨</div>
+                <h3>2. We Create Your Kit</h3>
+                <p>We generate a numbered canvas with matched paint colors</p>
             </div>
             <div class="step">
                 <div class="step-icon">📦</div>
-                <h3>3. Receive Your Kit</h3>
-                <p>We ship everything you need to paint your masterpiece</p>
+                <h3>3. Paint Your Masterpiece</h3>
+                <p>Receive everything you need and start painting!</p>
             </div>
         </div>
     </section>
 
-    <!-- Perfect For -->
-    <section class="section perfect-for">
-        <h2 class="section-title">Perfect <span>For</span></h2>
-        <div class="use-cases">
-            <div class="use-case">
-                <div class="use-case-icon">🎁</div>
-                <h4>Unique Gifts</h4>
-                <p>Turn a special memory into a handmade gift they'll treasure</p>
+    <!-- Upload Section -->
+    <section class="upload-section" id="upload">
+        <h2 class="section-title">Upload Your <span>Photo</span></h2>
+        <div class="upload-box">
+            <p>Don't have the app? No problem! Upload your photo here and we'll create your kit.</p>
+
+            <form class="upload-form" id="uploadForm" action="https://formspree.io/f/xpwzgvqk" method="POST" enctype="multipart/form-data">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="text" name="address" placeholder="Shipping Address" required>
+
+                <div class="file-input-wrapper">
+                    <input type="file" name="photo" accept="image/*" required id="photoInput">
+                    <div class="upload-icon">📷</div>
+                    <p id="fileName">Click or drag to upload your photo</p>
+                </div>
+
+                <button type="submit" class="submit-button">Submit Photo & Order Kit - $35</button>
+            </form>
+
+            <div class="form-submitted" id="formSuccess">
+                <div class="success-icon">✅</div>
+                <h3>Photo Received!</h3>
+                <p>We'll create your canvas and send payment instructions to your email within 24 hours.</p>
             </div>
-            <div class="use-case">
-                <div class="use-case-icon">🐕</div>
-                <h4>Pet Portraits</h4>
-                <p>Paint your furry friend and hang them on your wall</p>
-            </div>
-            <div class="use-case">
-                <div class="use-case-icon">🏝️</div>
-                <h4>Vacation Memories</h4>
-                <p>Relive your favorite travel moments brushstroke by brushstroke</p>
-            </div>
-            <div class="use-case">
-                <div class="use-case-icon">👨‍👩‍👧</div>
-                <h4>Family Portraits</h4>
-                <p>Create a one-of-a-kind family keepsake together</p>
-            </div>
+
+            <p class="upload-note">We'll email you a preview and payment link within 24 hours</p>
         </div>
     </section>
 
@@ -471,7 +612,7 @@
         <div class="price-card">
             <h3>Complete Paint Kit</h3>
             <div class="price">$35</div>
-            <p class="price-note">Free shipping to anywhere in the US</p>
+            <p class="price-note">Free shipping anywhere in the US</p>
             <ul class="includes">
                 <li><span class="check">✓</span> 5x7" canvas with your custom design</li>
                 <li><span class="check">✓</span> All acrylic paints (matched to your image)</li>
@@ -479,7 +620,7 @@
                 <li><span class="check">✓</span> Color reference guide</li>
                 <li><span class="check">✓</span> Ships in 5-7 business days</li>
             </ul>
-            <a href="#" class="order-button">Order Now</a>
+            <a href="#upload" class="order-button">Order Now</a>
             <div class="hawaii-badge">
                 <span>🌺</span> Handmade with aloha in Hawaii
             </div>
@@ -497,5 +638,19 @@
         </p>
         <p class="copyright">&copy; 2026 Paint Aloha. Made with aloha in Hawaii.</p>
     </footer>
+
+    <script>
+        // Show filename when file selected
+        document.getElementById('photoInput').addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name || 'Click or drag to upload your photo';
+            document.getElementById('fileName').textContent = fileName;
+        });
+
+        // Handle form submission
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            // Form will submit to Formspree, show success after redirect
+            // For now, let Formspree handle it
+        });
+    </script>
 </body>
 </html>
