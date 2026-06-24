@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Your Data - Paint Aloha</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1a1a2e;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #1a1a2e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        a {
+            color: #FF6B00;
+        }
+        .email-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B00, #FF8C00);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        .email-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 0, 0.4);
+        }
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Delete Your Data</h1>
+        <p>Paint Aloha respects your privacy and gives you control over your data. You can request deletion of any data associated with your use of our app or services.</p>
+
+        <h2>How to Request Data Deletion</h2>
+        <p>To request deletion of your data, please email us at:</p>
+        <a href="mailto:paintaloha.orders@gmail.com?subject=Data%20Deletion%20Request" class="email-link">paintaloha.orders@gmail.com</a>
+
+        <h2>What to Include in Your Request</h2>
+        <ul>
+            <li>Your email address (if you placed an order)</li>
+            <li>Any order confirmation numbers</li>
+            <li>Description of data you want deleted</li>
+        </ul>
+
+        <h2>What Data We May Have</h2>
+        <ul>
+            <li><strong>Order information:</strong> Name, email, shipping address (if you ordered a kit)</li>
+            <li><strong>Photos:</strong> Images uploaded for kit orders</li>
+            <li><strong>Payment info:</strong> Handled securely by Stripe (not stored by us)</li>
+        </ul>
+
+        <h2>Data Retention</h2>
+        <p>Upon receiving your deletion request, we will:</p>
+        <ul>
+            <li>Delete your order information within 30 days</li>
+            <li>Remove any uploaded photos from our servers</li>
+            <li>Confirm deletion via email</li>
+        </ul>
+        <p>Note: We may retain certain data as required by law (e.g., financial records for tax purposes).</p>
+
+        <a href="index.html" class="back-link">&larr; Back to Paint Aloha</a>
+    </div>
+</body>
+</html>
