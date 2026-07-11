@@ -568,78 +568,25 @@
         // PAINT ALOHA - Web Paint-by-Numbers Generator
         // ============================================
 
-        // Stock palette - matches the mobile app
-        const STOCK_PALETTE = [
-            { id: "burgundy", name: "Burgundy", r: 0.50, g: 0.12, b: 0.18 },
-            { id: "deep_red", name: "Deep Red", r: 0.68, g: 0.10, b: 0.10 },
-            { id: "red", name: "Red", r: 0.88, g: 0.15, b: 0.15 },
-            { id: "vermilion", name: "Vermilion", r: 0.92, g: 0.32, b: 0.15 },
-            { id: "rust_red", name: "Rust Red", r: 0.72, g: 0.28, b: 0.22 },
-            { id: "coral", name: "Coral", r: 0.95, g: 0.45, b: 0.38 },
-            { id: "orange", name: "Orange", r: 0.96, g: 0.55, b: 0.10 },
-            { id: "salmon", name: "Salmon", r: 0.95, g: 0.62, b: 0.55 },
-            { id: "mars_orange", name: "Mars Orange", r: 0.88, g: 0.48, b: 0.22 },
-            { id: "yellow_ochre", name: "Yellow Ochre", r: 0.85, g: 0.68, b: 0.25 },
-            { id: "orange_yellow", name: "Orange Yellow", r: 0.98, g: 0.72, b: 0.15 },
-            { id: "flesh_tint", name: "Flesh Tint", r: 0.94, g: 0.78, b: 0.65 },
-            { id: "sand_yellow", name: "Sand Yellow", r: 0.95, g: 0.88, b: 0.65 },
-            { id: "cadmium_yellow", name: "Cadmium Yellow", r: 0.98, g: 0.85, b: 0.18 },
-            { id: "yellow", name: "Yellow", r: 0.98, g: 0.92, b: 0.22 },
-            { id: "lemon_yellow", name: "Lemon Yellow", r: 0.98, g: 0.98, b: 0.35 },
-            { id: "light_green", name: "Light Green", r: 0.68, g: 0.88, b: 0.55 },
-            { id: "matcha_green", name: "Matcha Green", r: 0.55, g: 0.72, b: 0.42 },
-            { id: "sap_green", name: "Sap Green", r: 0.25, g: 0.50, b: 0.20 },
-            { id: "apple_green", name: "Apple Green", r: 0.55, g: 0.78, b: 0.32 },
-            { id: "green", name: "Green", r: 0.15, g: 0.65, b: 0.22 },
-            { id: "emerald_green", name: "Emerald Green", r: 0.20, g: 0.72, b: 0.48 },
-            { id: "bright_aqua_green", name: "Bright Aqua Green", r: 0.25, g: 0.82, b: 0.72 },
-            { id: "turquoise", name: "Turquoise", r: 0.22, g: 0.78, b: 0.78 },
-            { id: "pale_blue", name: "Pale Blue", r: 0.72, g: 0.85, b: 0.95 },
-            { id: "forest_green", name: "Forest Green", r: 0.12, g: 0.40, b: 0.18 },
-            { id: "viridian", name: "Viridian", r: 0.15, g: 0.52, b: 0.48 },
-            { id: "glacier_blue", name: "Glacier Blue", r: 0.58, g: 0.78, b: 0.88 },
-            { id: "dark_teal", name: "Dark Teal", r: 0.12, g: 0.42, b: 0.48 },
-            { id: "cerulean_blue", name: "Cerulean Blue", r: 0.18, g: 0.62, b: 0.88 },
-            { id: "sky_blue", name: "Sky Blue", r: 0.52, g: 0.78, b: 0.95 },
-            { id: "ultramarine", name: "Ultramarine", r: 0.20, g: 0.18, b: 0.62 },
-            { id: "cobalt_blue", name: "Cobalt Blue", r: 0.15, g: 0.38, b: 0.78 },
-            { id: "phthalo_blue", name: "Phthalo Blue", r: 0.06, g: 0.22, b: 0.68 },
-            { id: "light_blue_violet", name: "Light Blue Violet", r: 0.62, g: 0.58, b: 0.85 },
-            { id: "midnight_blue", name: "Midnight Blue", r: 0.10, g: 0.12, b: 0.35 },
-            { id: "violet", name: "Violet", r: 0.52, g: 0.28, b: 0.72 },
-            { id: "purple", name: "Purple", r: 0.45, g: 0.18, b: 0.65 },
-            { id: "pale_purple", name: "Pale Purple", r: 0.72, g: 0.58, b: 0.85 },
-            { id: "amethyst_purple", name: "Amethyst Purple", r: 0.62, g: 0.38, b: 0.72 },
-            { id: "royal_purple", name: "Royal Purple", r: 0.48, g: 0.25, b: 0.62 },
-            { id: "lilac", name: "Lilac", r: 0.78, g: 0.68, b: 0.85 },
-            { id: "cosmos", name: "Cosmos", r: 0.88, g: 0.35, b: 0.58 },
-            { id: "pink_blush", name: "Pink Blush", r: 0.95, g: 0.75, b: 0.80 },
-            { id: "antique_rose", name: "Antique Rose", r: 0.85, g: 0.58, b: 0.62 },
-            { id: "peach", name: "Peach", r: 0.98, g: 0.80, b: 0.65 },
-            { id: "rose", name: "Rose", r: 0.92, g: 0.52, b: 0.58 },
-            { id: "pink", name: "Pink", r: 0.96, g: 0.70, b: 0.78 },
-            { id: "magenta", name: "Magenta", r: 0.88, g: 0.18, b: 0.52 },
-            { id: "wine_red", name: "Wine Red", r: 0.58, g: 0.15, b: 0.25 },
-            { id: "dark_brown", name: "Dark Brown", r: 0.28, g: 0.15, b: 0.08 },
-            { id: "burnt_sienna", name: "Burnt Sienna", r: 0.62, g: 0.35, b: 0.20 },
-            { id: "sienna_brown", name: "Sienna Brown", r: 0.55, g: 0.30, b: 0.18 },
-            { id: "raw_sienna", name: "Raw Sienna", r: 0.75, g: 0.52, b: 0.28 },
-            { id: "brown", name: "Brown", r: 0.55, g: 0.35, b: 0.18 },
-            { id: "terra_cotta", name: "Terra Cotta", r: 0.78, g: 0.45, b: 0.32 },
-            { id: "beige", name: "Beige", r: 0.92, g: 0.85, b: 0.72 },
-            { id: "camel", name: "Camel", r: 0.82, g: 0.65, b: 0.42 },
-            { id: "greenish_brown", name: "Greenish Brown", r: 0.52, g: 0.48, b: 0.32 },
-            { id: "bluish_gray", name: "Bluish Gray", r: 0.58, g: 0.62, b: 0.68 },
-            { id: "light_gray", name: "Light Gray", r: 0.82, g: 0.82, b: 0.82 },
-            { id: "white", name: "White", r: 0.98, g: 0.98, b: 0.98 },
-            { id: "cool_gray", name: "Cool Gray", r: 0.65, g: 0.68, b: 0.72 },
-            { id: "gray", name: "Gray", r: 0.55, g: 0.55, b: 0.55 },
-            { id: "black", name: "Black", r: 0.05, g: 0.05, b: 0.05 }
+        // Fixed 12-color Artecho palette - same as mobile app
+        // Every kit gets these exact 12 paints pre-packaged
+        const FIXED_PALETTE = [
+            { number: 1,  id: "titanium_white", name: "Titanium White", code: "101", r: 0.98, g: 0.98, b: 0.98 },
+            { number: 2,  id: "lamp_black",     name: "Lamp Black",     code: "701", r: 0.05, g: 0.05, b: 0.05 },
+            { number: 3,  id: "lemon_yellow",   name: "Lemon Yellow",   code: "301", r: 0.98, g: 0.92, b: 0.15 },
+            { number: 4,  id: "orange",         name: "Orange",         code: "207", r: 0.96, g: 0.50, b: 0.08 },
+            { number: 5,  id: "scarlet",        name: "Scarlet",        code: "202", r: 0.85, g: 0.15, b: 0.12 },
+            { number: 6,  id: "purple",         name: "Purple",         code: "411", r: 0.48, g: 0.18, b: 0.58 },
+            { number: 7,  id: "cerulean_blue",  name: "Cerulean Blue",  code: "403", r: 0.16, g: 0.50, b: 0.75 },
+            { number: 8,  id: "turquoise",      name: "Turquoise",      code: "546", r: 0.25, g: 0.75, b: 0.75 },
+            { number: 9,  id: "sap_green",      name: "Sap Green",      code: "506", r: 0.32, g: 0.48, b: 0.22 },
+            { number: 10, id: "yellow_ochre",   name: "Yellow Ochre",   code: "303", r: 0.80, g: 0.62, b: 0.22 },
+            { number: 11, id: "burnt_sienna",   name: "Burnt Sienna",   code: "609", r: 0.55, g: 0.28, b: 0.15 },
+            { number: 12, id: "burnt_umber",    name: "Burnt Umber",    code: "613", r: 0.32, g: 0.18, b: 0.10 },
         ];
 
         // Configuration
         const CONFIG = {
-            colorCount: 12,
             minRegionSize: 50,
             smoothingPasses: 2,
             canvasSizes: {
@@ -925,147 +872,28 @@
             const data = imageData.data;
             const pixelCount = width * height;
 
-            // Sample pixels evenly across the image
-            const sampleCount = Math.min(10000, pixelCount);
-            const sampleRate = Math.max(1, Math.floor(pixelCount / sampleCount));
-            const samples = [];
+            // Build palette from fixed colors (pre-calculate r255, g255, b255)
+            const palette = FIXED_PALETTE.map(color => ({
+                number: color.number,
+                id: color.id,
+                name: color.name,
+                code: color.code,
+                r: color.r,
+                g: color.g,
+                b: color.b,
+                r255: Math.round(color.r * 255),
+                g255: Math.round(color.g * 255),
+                b255: Math.round(color.b * 255)
+            }));
 
-            for (let i = 0; i < pixelCount; i += sampleRate) {
-                const idx = i * 4;
-                samples.push({ r: data[idx], g: data[idx+1], b: data[idx+2] });
-            }
-
-            // K-means++ initialization for better centroid spread
-            let centroids = [];
-
-            // First centroid: random sample
-            centroids.push({...samples[Math.floor(Math.random() * samples.length)]});
-
-            // Remaining centroids: weighted by distance to nearest existing centroid
-            while (centroids.length < CONFIG.colorCount) {
-                let totalDist = 0;
-                const distances = samples.map(sample => {
-                    let minDist = Infinity;
-                    for (const c of centroids) {
-                        const d = colorDistance(sample.r, sample.g, sample.b, c.r, c.g, c.b);
-                        minDist = Math.min(minDist, d);
-                    }
-                    totalDist += minDist * minDist;
-                    return minDist * minDist;
-                });
-
-                // Pick next centroid with probability proportional to distance squared
-                let r = Math.random() * totalDist;
-                for (let i = 0; i < samples.length; i++) {
-                    r -= distances[i];
-                    if (r <= 0) {
-                        centroids.push({...samples[i]});
-                        break;
-                    }
-                }
-                // Fallback if numerical issues
-                if (centroids.length < CONFIG.colorCount && r > 0) {
-                    centroids.push({...samples[Math.floor(Math.random() * samples.length)]});
-                }
-            }
-
-            // Run k-means iterations
-            for (let iter = 0; iter < 25; iter++) {
-                const clusters = Array(CONFIG.colorCount).fill(null).map(() => []);
-
-                for (const sample of samples) {
-                    let minDist = Infinity, nearest = 0;
-                    for (let c = 0; c < centroids.length; c++) {
-                        const d = colorDistance(sample.r, sample.g, sample.b,
-                                                centroids[c].r, centroids[c].g, centroids[c].b);
-                        if (d < minDist) { minDist = d; nearest = c; }
-                    }
-                    clusters[nearest].push(sample);
-                }
-
-                // Update centroids
-                let changed = false;
-                for (let c = 0; c < centroids.length; c++) {
-                    if (clusters[c].length === 0) {
-                        // Reinitialize empty cluster with random sample
-                        const newC = samples[Math.floor(Math.random() * samples.length)];
-                        centroids[c] = {...newC};
-                        changed = true;
-                        continue;
-                    }
-                    const sumR = clusters[c].reduce((s, p) => s + p.r, 0);
-                    const sumG = clusters[c].reduce((s, p) => s + p.g, 0);
-                    const sumB = clusters[c].reduce((s, p) => s + p.b, 0);
-                    const newR = sumR / clusters[c].length;
-                    const newG = sumG / clusters[c].length;
-                    const newB = sumB / clusters[c].length;
-
-                    if (Math.abs(centroids[c].r - newR) > 1 ||
-                        Math.abs(centroids[c].g - newG) > 1 ||
-                        Math.abs(centroids[c].b - newB) > 1) {
-                        changed = true;
-                    }
-                    centroids[c] = { r: newR, g: newG, b: newB };
-                }
-
-                // Early exit if converged
-                if (!changed && iter > 5) break;
-            }
-
-            // Sort centroids by pixel count (most dominant first)
-            const centroidCounts = centroids.map((c, i) => {
-                let count = 0;
-                for (const sample of samples) {
-                    let minDist = Infinity, nearest = 0;
-                    for (let j = 0; j < centroids.length; j++) {
-                        const d = colorDistance(sample.r, sample.g, sample.b,
-                                                centroids[j].r, centroids[j].g, centroids[j].b);
-                        if (d < minDist) { minDist = d; nearest = j; }
-                    }
-                    if (nearest === i) count++;
-                }
-                return { centroid: c, count };
-            });
-            centroidCounts.sort((a, b) => b.count - a.count);
-            centroids = centroidCounts.map(x => x.centroid);
-
-            // Match centroids to stock palette
-            const palette = [];
-            const usedIds = new Set();
-
-            for (const centroid of centroids) {
-                let bestMatch = null, bestDist = Infinity;
-
-                for (const stock of STOCK_PALETTE) {
-                    if (usedIds.has(stock.id)) continue;
-                    const d = colorDistance(centroid.r, centroid.g, centroid.b,
-                                          stock.r * 255, stock.g * 255, stock.b * 255);
-                    if (d < bestDist) { bestDist = d; bestMatch = stock; }
-                }
-
-                if (bestMatch) {
-                    palette.push({
-                        number: palette.length + 1,
-                        id: bestMatch.id,
-                        name: bestMatch.name,
-                        r: bestMatch.r,
-                        g: bestMatch.g,
-                        b: bestMatch.b,
-                        r255: Math.round(bestMatch.r * 255),
-                        g255: Math.round(bestMatch.g * 255),
-                        b255: Math.round(bestMatch.b * 255)
-                    });
-                    usedIds.add(bestMatch.id);
-                }
-            }
-
-            // Quantize all pixels to palette colors
+            // Quantize all pixels to the nearest fixed palette color
             const quantizedData = new Uint8ClampedArray(data.length);
 
             for (let i = 0; i < pixelCount; i++) {
                 const idx = i * 4;
                 const r = data[idx], g = data[idx+1], b = data[idx+2];
 
+                // Find nearest palette color using perceptual distance
                 let minDist = Infinity, nearest = 0;
                 for (let c = 0; c < palette.length; c++) {
                     const d = colorDistance(r, g, b, palette[c].r255, palette[c].g255, palette[c].b255);
