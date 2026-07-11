@@ -925,8 +925,9 @@
             const data = imageData.data;
             const pixelCount = width * height;
 
-            // Sample pixels for k-means
-            const sampleRate = Math.max(1, Math.floor(pixelCount / 5000));
+            // Sample pixels evenly across the image
+            const sampleCount = Math.min(10000, pixelCount);
+            const sampleRate = Math.max(1, Math.floor(pixelCount / sampleCount));
             const samples = [];
 
             for (let i = 0; i < pixelCount; i += sampleRate) {
@@ -934,13 +935,42 @@
                 samples.push({ r: data[idx], g: data[idx+1], b: data[idx+2] });
             }
 
-            // K-means clustering
+            // K-means++ initialization for better centroid spread
             let centroids = [];
-            for (let i = 0; i < CONFIG.colorCount; i++) {
-                centroids.push(samples[Math.floor(Math.random() * samples.length)]);
+
+            // First centroid: random sample
+            centroids.push({...samples[Math.floor(Math.random() * samples.length)]});
+
+            // Remaining centroids: weighted by distance to nearest existing centroid
+            while (centroids.length < CONFIG.colorCount) {
+                let totalDist = 0;
+                const distances = samples.map(sample => {
+                    let minDist = Infinity;
+                    for (const c of centroids) {
+                        const d = colorDistance(sample.r, sample.g, sample.b, c.r, c.g, c.b);
+                        minDist = Math.min(minDist, d);
+                    }
+                    totalDist += minDist * minDist;
+                    return minDist * minDist;
+                });
+
+                // Pick next centroid with probability proportional to distance squared
+                let r = Math.random() * totalDist;
+                for (let i = 0; i < samples.length; i++) {
+                    r -= distances[i];
+                    if (r <= 0) {
+                        centroids.push({...samples[i]});
+                        break;
+                    }
+                }
+                // Fallback if numerical issues
+                if (centroids.length < CONFIG.colorCount && r > 0) {
+                    centroids.push({...samples[Math.floor(Math.random() * samples.length)]});
+                }
             }
 
-            for (let iter = 0; iter < 20; iter++) {
+            // Run k-means iterations
+            for (let iter = 0; iter < 25; iter++) {
                 const clusters = Array(CONFIG.colorCount).fill(null).map(() => []);
 
                 for (const sample of samples) {
@@ -953,18 +983,51 @@
                     clusters[nearest].push(sample);
                 }
 
+                // Update centroids
+                let changed = false;
                 for (let c = 0; c < centroids.length; c++) {
-                    if (clusters[c].length === 0) continue;
+                    if (clusters[c].length === 0) {
+                        // Reinitialize empty cluster with random sample
+                        const newC = samples[Math.floor(Math.random() * samples.length)];
+                        centroids[c] = {...newC};
+                        changed = true;
+                        continue;
+                    }
                     const sumR = clusters[c].reduce((s, p) => s + p.r, 0);
                     const sumG = clusters[c].reduce((s, p) => s + p.g, 0);
                     const sumB = clusters[c].reduce((s, p) => s + p.b, 0);
-                    centroids[c] = {
-                        r: sumR / clusters[c].length,
-                        g: sumG / clusters[c].length,
-                        b: sumB / clusters[c].length
-                    };
+                    const newR = sumR / clusters[c].length;
+                    const newG = sumG / clusters[c].length;
+                    const newB = sumB / clusters[c].length;
+
+                    if (Math.abs(centroids[c].r - newR) > 1 ||
+                        Math.abs(centroids[c].g - newG) > 1 ||
+                        Math.abs(centroids[c].b - newB) > 1) {
+                        changed = true;
+                    }
+                    centroids[c] = { r: newR, g: newG, b: newB };
                 }
+
+                // Early exit if converged
+                if (!changed && iter > 5) break;
             }
+
+            // Sort centroids by pixel count (most dominant first)
+            const centroidCounts = centroids.map((c, i) => {
+                let count = 0;
+                for (const sample of samples) {
+                    let minDist = Infinity, nearest = 0;
+                    for (let j = 0; j < centroids.length; j++) {
+                        const d = colorDistance(sample.r, sample.g, sample.b,
+                                                centroids[j].r, centroids[j].g, centroids[j].b);
+                        if (d < minDist) { minDist = d; nearest = j; }
+                    }
+                    if (nearest === i) count++;
+                }
+                return { centroid: c, count };
+            });
+            centroidCounts.sort((a, b) => b.count - a.count);
+            centroids = centroidCounts.map(x => x.centroid);
 
             // Match centroids to stock palette
             const palette = [];
@@ -983,7 +1046,11 @@
                 if (bestMatch) {
                     palette.push({
                         number: palette.length + 1,
-                        ...bestMatch,
+                        id: bestMatch.id,
+                        name: bestMatch.name,
+                        r: bestMatch.r,
+                        g: bestMatch.g,
+                        b: bestMatch.b,
                         r255: Math.round(bestMatch.r * 255),
                         g255: Math.round(bestMatch.g * 255),
                         b255: Math.round(bestMatch.b * 255)
@@ -992,7 +1059,7 @@
                 }
             }
 
-            // Quantize all pixels
+            // Quantize all pixels to palette colors
             const quantizedData = new Uint8ClampedArray(data.length);
 
             for (let i = 0; i < pixelCount; i++) {
