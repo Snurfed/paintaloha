@@ -585,6 +585,73 @@
             { number: 12, id: "burnt_umber",    name: "Burnt Umber",    code: "613", r: 0.32, g: 0.18, b: 0.10 },
         ];
 
+        // Shuttle Art Vibrant Colors - for dynamic expansion
+        // 3 best-fit colors are selected per image to supplement the 12 fixed colors
+        const SHUTTLE_ART_PALETTE = [
+            // Reds
+            { id: "burgundy", name: "Burgundy", r: 0.50, g: 0.09, b: 0.20 },
+            { id: "deep_red", name: "Deep Red", r: 0.72, g: 0.11, b: 0.11 },
+            { id: "red", name: "Red", r: 0.90, g: 0.15, b: 0.15 },
+            { id: "vermilion", name: "Vermilion", r: 0.89, g: 0.26, b: 0.20 },
+            { id: "rust_red", name: "Rust Red", r: 0.72, g: 0.25, b: 0.18 },
+            { id: "wine_red", name: "Wine Red", r: 0.60, g: 0.15, b: 0.25 },
+            // Oranges/Corals
+            { id: "coral", name: "Coral", r: 1.00, g: 0.50, b: 0.31 },
+            { id: "salmon", name: "Salmon", r: 0.98, g: 0.50, b: 0.45 },
+            { id: "mars_orange", name: "Mars Orange", r: 0.96, g: 0.45, b: 0.20 },
+            { id: "orange_yellow", name: "Orange Yellow", r: 1.00, g: 0.73, b: 0.20 },
+            // Yellows
+            { id: "flesh_tint", name: "Flesh Tint", r: 1.00, g: 0.87, b: 0.75 },
+            { id: "sand_yellow", name: "Sand Yellow", r: 0.96, g: 0.87, b: 0.60 },
+            { id: "cadmium_yellow", name: "Cadmium Yellow", r: 1.00, g: 0.96, b: 0.30 },
+            // Greens
+            { id: "light_green", name: "Light Green", r: 0.56, g: 0.93, b: 0.56 },
+            { id: "matcha_green", name: "Matcha Green", r: 0.60, g: 0.73, b: 0.45 },
+            { id: "apple_green", name: "Apple Green", r: 0.55, g: 0.71, b: 0.30 },
+            { id: "emerald_green", name: "Emerald Green", r: 0.20, g: 0.55, b: 0.35 },
+            { id: "bright_aqua", name: "Bright Aqua Green", r: 0.35, g: 0.85, b: 0.75 },
+            { id: "forest_green", name: "Forest Green", r: 0.13, g: 0.35, b: 0.13 },
+            { id: "viridian", name: "Viridian", r: 0.25, g: 0.51, b: 0.43 },
+            // Blues
+            { id: "pale_blue", name: "Pale Blue", r: 0.68, g: 0.85, b: 0.90 },
+            { id: "glacier_blue", name: "Glacier Blue", r: 0.50, g: 0.75, b: 0.85 },
+            { id: "dark_teal", name: "Dark Teal", r: 0.15, g: 0.45, b: 0.50 },
+            { id: "sky_blue", name: "Sky Blue", r: 0.53, g: 0.81, b: 0.92 },
+            { id: "ultramarine", name: "Ultramarine", r: 0.18, g: 0.18, b: 0.70 },
+            { id: "cobalt_blue", name: "Cobalt Blue", r: 0.00, g: 0.28, b: 0.67 },
+            { id: "phthalo_blue", name: "Phthalo Blue", r: 0.00, g: 0.15, b: 0.40 },
+            { id: "light_blue_violet", name: "Light Blue Violet", r: 0.55, g: 0.55, b: 0.90 },
+            { id: "midnight_blue", name: "Midnight Blue", r: 0.10, g: 0.10, b: 0.30 },
+            // Purples
+            { id: "violet", name: "Violet", r: 0.55, g: 0.25, b: 0.75 },
+            { id: "pale_purple", name: "Pale Purple", r: 0.75, g: 0.60, b: 0.85 },
+            { id: "amethyst", name: "Amethyst Purple", r: 0.60, g: 0.40, b: 0.70 },
+            { id: "royal_purple", name: "Royal Purple", r: 0.47, g: 0.32, b: 0.66 },
+            { id: "lilac", name: "Lilac", r: 0.78, g: 0.64, b: 0.78 },
+            { id: "cosmos", name: "Cosmos", r: 1.00, g: 0.84, b: 0.88 },
+            // Pinks
+            { id: "pink_blush", name: "Pink Blush", r: 1.00, g: 0.75, b: 0.80 },
+            { id: "antique_rose", name: "Antique Rose", r: 0.84, g: 0.56, b: 0.58 },
+            { id: "peach", name: "Peach", r: 1.00, g: 0.80, b: 0.64 },
+            { id: "rose", name: "Rose", r: 1.00, g: 0.45, b: 0.55 },
+            { id: "pink", name: "Pink", r: 1.00, g: 0.75, b: 0.80 },
+            { id: "magenta", name: "Magenta", r: 0.90, g: 0.20, b: 0.55 },
+            // Browns
+            { id: "dark_brown", name: "Dark Brown", r: 0.25, g: 0.15, b: 0.08 },
+            { id: "sienna_brown", name: "Sienna Brown", r: 0.60, g: 0.35, b: 0.20 },
+            { id: "raw_sienna", name: "Raw Sienna", r: 0.83, g: 0.55, b: 0.35 },
+            { id: "brown", name: "Brown", r: 0.55, g: 0.35, b: 0.20 },
+            { id: "terra_cotta", name: "Terra Cotta", r: 0.88, g: 0.53, b: 0.38 },
+            { id: "beige", name: "Beige", r: 0.96, g: 0.91, b: 0.78 },
+            { id: "camel", name: "Camel", r: 0.76, g: 0.60, b: 0.42 },
+            { id: "greenish_brown", name: "Greenish Brown", r: 0.50, g: 0.45, b: 0.30 },
+            // Grays
+            { id: "bluish_gray", name: "Bluish Gray", r: 0.60, g: 0.65, b: 0.72 },
+            { id: "light_gray", name: "Light Gray", r: 0.83, g: 0.83, b: 0.83 },
+            { id: "cool_gray", name: "Cool Gray", r: 0.55, g: 0.55, b: 0.58 },
+            { id: "gray", name: "Gray", r: 0.50, g: 0.50, b: 0.50 },
+        ];
+
         // Configuration
         const CONFIG = {
             minRegionSize: 50,
@@ -868,11 +935,136 @@
             return Math.sqrt(dL*dL + da*da + db*db);
         }
 
+        // Weighted color distance for supplement color selection (matches iOS app)
+        function weightedColorDistance(r1, g1, b1, r2, g2, b2) {
+            const rMean = (r1 + r2) / 2;
+            const dR = r1 - r2;
+            const dG = g1 - g2;
+            const dB = b1 - b2;
+            const weightR = 2 + rMean;
+            const weightG = 4.0;
+            const weightB = 2 + (1 - rMean);
+            return Math.sqrt(weightR * dR * dR + weightG * dG * dG + weightB * dB * dB) * 100;
+        }
+
+        // Find 3 best supplement colors from Shuttle Art palette
+        function findBestSupplementColors(imageColors, count = 3) {
+            const colorScores = [];
+
+            for (const shuttleColor of SHUTTLE_ART_PALETTE) {
+                let totalScore = 0;
+
+                for (const imgColor of imageColors) {
+                    // Distance from image color to this Shuttle color
+                    const shuttleDist = weightedColorDistance(
+                        imgColor.r, imgColor.g, imgColor.b,
+                        shuttleColor.r, shuttleColor.g, shuttleColor.b
+                    );
+
+                    // Distance from image color to nearest fixed color
+                    let minFixedDist = Infinity;
+                    for (const fixed of FIXED_PALETTE) {
+                        const fixedDist = weightedColorDistance(
+                            imgColor.r, imgColor.g, imgColor.b,
+                            fixed.r, fixed.g, fixed.b
+                        );
+                        minFixedDist = Math.min(minFixedDist, fixedDist);
+                    }
+
+                    // If Shuttle color is closer than any fixed color, it's valuable
+                    if (shuttleDist < minFixedDist) {
+                        const improvement = minFixedDist - shuttleDist;
+                        totalScore += improvement * imgColor.weight;
+                    }
+                }
+
+                // Penalize Shuttle colors too similar to fixed palette
+                let minDistToFixed = Infinity;
+                for (const fixed of FIXED_PALETTE) {
+                    const dist = weightedColorDistance(
+                        shuttleColor.r, shuttleColor.g, shuttleColor.b,
+                        fixed.r, fixed.g, fixed.b
+                    );
+                    minDistToFixed = Math.min(minDistToFixed, dist);
+                }
+
+                // Only consider if reasonably different from fixed palette
+                if (minDistToFixed > 20) {
+                    colorScores.push({ color: shuttleColor, score: totalScore });
+                }
+            }
+
+            // Sort by score descending
+            colorScores.sort((a, b) => b.score - a.score);
+
+            // Select top colors ensuring diversity
+            const selected = [];
+            for (const candidate of colorScores) {
+                if (selected.length >= count) break;
+
+                // Check diversity from already selected
+                let tooSimilar = false;
+                for (const existing of selected) {
+                    const dist = weightedColorDistance(
+                        candidate.color.r, candidate.color.g, candidate.color.b,
+                        existing.r, existing.g, existing.b
+                    );
+                    if (dist < 25) {
+                        tooSimilar = true;
+                        break;
+                    }
+                }
+
+                if (!tooSimilar) {
+                    selected.push(candidate.color);
+                }
+            }
+
+            return selected;
+        }
+
         function quantizeColors(imageData, width, height) {
             const data = imageData.data;
             const pixelCount = width * height;
 
-            // Build palette from fixed colors (pre-calculate r255, g255, b255)
+            // Step 1: Sample image colors to build histogram
+            const sampleRate = Math.max(1, Math.floor(pixelCount / 5000));
+            const colorHistogram = {};
+
+            for (let i = 0; i < pixelCount; i += sampleRate) {
+                const idx = i * 4;
+                const r = data[idx] / 255;
+                const g = data[idx + 1] / 255;
+                const b = data[idx + 2] / 255;
+
+                // Quantize to reduce unique colors
+                const qr = Math.floor(r * 10) * 10;
+                const qg = Math.floor(g * 10) * 10;
+                const qb = Math.floor(b * 10) * 10;
+                const key = `${qr}_${qg}_${qb}`;
+
+                if (colorHistogram[key]) {
+                    colorHistogram[key].count++;
+                } else {
+                    colorHistogram[key] = { r, g, b, count: 1 };
+                }
+            }
+
+            // Convert to weighted color array
+            const histogramEntries = Object.values(colorHistogram);
+            const totalSamples = histogramEntries.reduce((sum, e) => sum + e.count, 0);
+            const imageColors = histogramEntries.map(e => ({
+                r: e.r,
+                g: e.g,
+                b: e.b,
+                weight: e.count / totalSamples
+            }));
+
+            // Step 2: Find 3 best supplement colors from Shuttle Art
+            const supplementColors = findBestSupplementColors(imageColors, 3);
+            console.log('Selected supplement colors:', supplementColors.map(c => c.name));
+
+            // Step 3: Build 15-color palette (12 fixed + 3 dynamic)
             const palette = FIXED_PALETTE.map(color => ({
                 number: color.number,
                 id: color.id,
@@ -886,7 +1078,23 @@
                 b255: Math.round(color.b * 255)
             }));
 
-            // Quantize all pixels to the nearest fixed palette color
+            // Add supplement colors as numbers 13, 14, 15
+            supplementColors.forEach((supplement, index) => {
+                palette.push({
+                    number: 13 + index,
+                    id: supplement.id,
+                    name: supplement.name,
+                    code: 'SA',
+                    r: supplement.r,
+                    g: supplement.g,
+                    b: supplement.b,
+                    r255: Math.round(supplement.r * 255),
+                    g255: Math.round(supplement.g * 255),
+                    b255: Math.round(supplement.b * 255)
+                });
+            });
+
+            // Step 4: Quantize all pixels to nearest palette color
             const quantizedData = new Uint8ClampedArray(data.length);
 
             for (let i = 0; i < pixelCount; i++) {
